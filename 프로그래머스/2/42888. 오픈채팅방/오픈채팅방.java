@@ -25,6 +25,6 @@ class Solution {
                 answer.add(map.get(uid.get(i)) + "님이 나갔습니다.");
             }
         }
-        return answer;
+        return answer; 
     }
 }
