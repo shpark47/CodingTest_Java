@@ -6,7 +6,6 @@ class Solution {
 
         ArrayList<String> system = new ArrayList<>(); // Enter, Leave, Change 넣기용
         ArrayList<String> uid = new ArrayList<>(); // uid 넣기용
-        ArrayList<String> name = new ArrayList<>(); // name 넣기용
 
         for(int i = 0; i < record.length; i++){
             String str[] = record[i].split(" "); // 행동, uid, 이름으로 나누기
@@ -25,6 +24,6 @@ class Solution {
                 answer.add(map.get(uid.get(i)) + "님이 나갔습니다.");
             }
         }
-        return answer; 
+        return answer;
     }
 }
