@@ -9,44 +9,46 @@ class Solution {
         ArrayList<String> bonus = new ArrayList<>();
         ArrayList<String> op = new ArrayList<>();
         
-        for(int i = 0; i < dartResult.length(); i++){
+        for(int i = 0; i < dartResult.length(); i++){ //한 글자씩 넣기
             String s = dartResult.substring(i, i+1);
             list.add(s);
         }
         
-        for(int i = 0; i < list.size(); i++){
+        for(int i = 0; i < list.size(); i++){ //10이 있을경우
+            // 앞에 들어간게 1이고 지금 가져온게 0이면 = 10이면
             if(i > 0 && list.get(i-1).equals("1") && list.get(i).equals("0")){
-                list.set(i-1, "10");
-                list.remove(i);
+                list.set(i-1, "10"); //앞에 걸 10으로 변경
+                list.remove(i); //지금 리스트 삭제 = 뒤에있는 리스트 당겨짐
             }
         }
         
-        boolean nock = false;
-        boolean bock = false;
-        int ncount = 0;
-        int bcount = 0;
+        boolean nock = false; //숫자가 들어갔는지
+        boolean bock = false; //보너스가 들어갔는지
+        int ncount = 0; //숫자가 몇개 들어갔는지
+        int bcount = 0; //보너스가 몇개 들어갔는지
         for(int i = 0; i < list.size(); i++){
             String s = list.get(i);
-            if(nock && bock){
-                if(!(s.equals("*") || s.equals("#"))){ //op
+            if(nock && bock){ //숫자와 보너스가 들어왔으면
+                if(!(s.equals("*") || s.equals("#"))){ //*이나 #이 아니면 빈칸
                     op.add("");
                 }else{
                     op.add(s);
                 }
-                nock = false;
+                nock = false; //숫자, 보너스 체크 초기화
                 bock = false;
             }
+            //숫자면
             if(!(s.equals("S") || s.equals("D") || s.equals("T") || s.equals("*") || s.equals("#"))){
-                if(ncount == 0){ //no
+                if(ncount == 0){ //첫번째 숫자
                     no.add(Integer.parseInt(s));
-                }else if(ncount == 1){
+                }else if(ncount == 1){ //두번째 숫자
                     no.add(Integer.parseInt(s));
-                }else if(ncount == 2){
+                }else if(ncount == 2){ //세번째 숫자
                     no.add(Integer.parseInt(s));
                 }
-                nock = true;
-                ncount++;
-            }else if(s.equals("S") || s.equals("D") || s.equals("T")){
+                nock = true; //숫자 들어옴
+                ncount++; //들어올때마다 +
+            }else if(s.equals("S") || s.equals("D") || s.equals("T")){ //보너스면
                 if(bcount == 0){ //bonus
                     bonus.add(s);
                 }else if(bcount == 1){
@@ -59,9 +61,9 @@ class Solution {
             }
         }
         
-        for(int i = 0; i < 3; i++){
+        for(int i = 0; i < 3; i++){ //옵션이 3개 미만이면
             if(op.size() < 3){
-                op.add("");
+                op.add(""); //빈 데이터 넣기
             }
         }
         
