@@ -1,6 +1,7 @@
 class Solution {
     public String solution(int[] food) {
         String answer = "";
+        StringBuffer str = new StringBuffer();
         int[] level = new int[food.length];
         
         level[0] = 0; // 0레벨(물)은 무조건 1개라 따로 넣어줌
@@ -11,17 +12,13 @@ class Solution {
         
         for(int i = 0; i < level.length; i++){ // 음식 개수의 레벨을 넣음
             for(int j = 0; j < level[i]; j++){
-                answer += i;
+                str.append(i);
             }
         }
         
+        answer += str.toString();
         answer += 0;
-        
-        for(int i = level.length-1; i > 0; i--){ // 반대로 넣음
-            for(int j = level[i]; j > 0; j--){
-                answer += i;
-            }
-        }
+        answer += str.reverse().toString();
         
         return answer;
     }
